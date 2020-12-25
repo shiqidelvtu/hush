@@ -1,4 +1,4 @@
-console.log('golb11111'); 
+console.log('golb1');  //对于JS加载入栈
 setImmediate(function() { //滞留
     console.log('immediate9'); //
     process.nextTick(function() {
@@ -12,7 +12,7 @@ setImmediate(function() { //滞留
     })
 })
 setTimeout(function() {
-    console.log('timeout5'); //5
+    console.log('timeout5'); 
     process.nextTick(function() {
         console.log('timeout1_nextTick7');
     })
@@ -22,7 +22,7 @@ setTimeout(function() {
     }).then(function() {
         console.log('timeout1_then8')
     })
-    setTimeout(function() {  //
+    setTimeout(function() { 
     	console.log('timeout1_timeout13');
         process.nextTick(function() {
             console.log('timeout1_timeout1_nextTick14');
