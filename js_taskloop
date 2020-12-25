@@ -1,0 +1,43 @@
+console.log('golb11111'); 
+setImmediate(function() { //滞留
+    console.log('immediate9'); //
+    process.nextTick(function() {
+        console.log('immediate1_nextTick11');
+    })
+    new Promise(function(resolve) {
+        console.log('immediate1_promise10'); 
+        resolve();
+    }).then(function() {
+        console.log('immediate1_then12')
+    })
+})
+setTimeout(function() {
+    console.log('timeout5'); //5
+    process.nextTick(function() {
+        console.log('timeout1_nextTick7');
+    })
+    new Promise(function(resolve) {
+        console.log('timeout1_promise6');
+        resolve();
+    }).then(function() {
+        console.log('timeout1_then8')
+    })
+    setTimeout(function() {  //
+    	console.log('timeout1_timeout13');
+        process.nextTick(function() {
+            console.log('timeout1_timeout1_nextTick14');
+        })
+        setImmediate(function() {
+            console.log('timeout1_setImmediate15');
+        })
+    });
+})
+new Promise(function(resolve) {
+    console.log('glob1_promise2');
+    resolve();
+}).then(function() {
+    console.log('glob1_then4')
+})
+process.nextTick(function() {
+    console.log('glob1_nextTick3');
+})
